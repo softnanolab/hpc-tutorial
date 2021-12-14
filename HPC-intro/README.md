@@ -12,7 +12,9 @@ Before logging in on the HPC, you will need to either be using [**VPN**](https:/
 
 To login, you can use a Linux/Mac or Windows terminal (or the [interactive rcs terminal online](https://login.rcs.ic.ac.uk)) and type the command:
 
-```ssh your_username@login.hpc.ic.ac.uk```
+```
+ssh your_username@login.hpc.ic.ac.uk
+```
 
 It should prompt you for a password, which is the same as your normal password.
 
@@ -56,7 +58,8 @@ mv <file1> <file2>  # move/rename a file - you can also specify a path
 cp <file1> <file2>  # copy a file - you can also specify a path
 
 rm <file>           # delete a file
-rm <*.log>          # delete all files ending with log - * can be used anywhere in the expression
+rm <*.log>          # delete all files ending with log - * can be used
+                    # anywhere in the expression
 rm -r <folder>      # removes the folder & all it's contents
 
 cat <file>          # output contents of file in terminal
@@ -66,7 +69,8 @@ head -n <file>      # displays the first n lines of a file
 
 clear               # clear the contents of the terminal
 
-sudo apt-get <...>  # apt-get is a powerful package manager, and is used to install/update/remove packages on some linux systems.
+sudo apt-get <...>  # apt-get is a powerful package manager, and is used
+                    # to install/update/remove packages on some linux systems.
 
 ```
 
@@ -80,15 +84,18 @@ sudo apt-get <...>  # apt-get is a powerful package manager, and is used to inst
 
     First ensure you are in your local terminal. Then we can use `scp <SourceFile(s)> <TargetFolder>`
 
-- Copying from local to remote, e.g.
+    - Copying from local to remote, e.g.
 
-```bash
-cd my_files         # move to folder with files to copy
-scp file.txt $HPC:~ # copy to home directory on the HPC
-```
-- Copying from remote to local, e.g.
+    ```bash
+    cd my_files         # move to folder with files to copy
+    scp file.txt $HPC:~ # copy to home directory on the HPC
+    ```
+    - Copying from remote to local, e.g.
 
-```bash
-cd my_results           # move to local folder where you want to store the files from the HPC
-scp $HPC:~/results/* .  # copy all files in the results folder on the HPC to the local folder (don't forget the dot)
-```
+    ```bash
+    cd my_results           # move to local folder where you want to store the
+                            # files from the HPC
+
+    scp $HPC:~/results/* .  # copy all files in the results folder on the HPC
+                            # to the local folder (don't forget the dot)
+    ```
