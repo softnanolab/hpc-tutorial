@@ -3,15 +3,15 @@ A set of tutorials using &amp; running simulations on the HPC at Imperial, our g
 
 ## Outline of repo:
 
-- HPC introduction
+- [HPC introduction](https://github.com/softnanolab/hpc-tutorial/tree/main/HPC-intro)
     - logging in
     - common linux commands
     - tips and tricks
     - file structure & transferring files
     - the resource manager & running jobs on the HPC
     - downloading software to use on the HPC
-- HPC oxDNA
-    - oxDNA software setup
+- [Running oxDNA simulations](https://github.com/softnanolab/hpc-tutorial/tree/main/HPC-oxDNA)
+    - oxDNA software setup on the HPC
     - oxDNA file anatomy
 
 ## Useful resources:
