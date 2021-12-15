@@ -4,16 +4,15 @@ A set of tutorials using &amp; running simulations on the HPC at Imperial, our g
 ## Outline of repo:
 
 - HPC introduction
-    - VPN setup
     - logging in
-    - useful commands
-    - file structure
-    - editing with vscode
+    - common linux commands
+    - tips and tricks
+    - file structure & transferring files
+    - the resource manager & running jobs on the HPC
+    - downloading software to use on the HPC
 - HPC oxDNA
-    - oxDNA setup
-    - batch scripting
-    - parallel jobs
-    - checking on jobs
+    - oxDNA software setup
+    - oxDNA file anatomy
 
 ## Useful resources:
 
