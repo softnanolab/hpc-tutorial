@@ -1,6 +1,6 @@
 # HPC-intro
 
-## Step 0. Authorisation
+## Step 0: Authorisation
 
 You must first be granted access to the HPC before you can use it, your supervisor will need to contact the HPC on your behalf.
 
