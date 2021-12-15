@@ -2,7 +2,7 @@
 
 Below is a list of common linux (bash) commands.
 
-```bash
+```ruby
 cd <file or path>   # change directory
 cd                  # change to root directory
 cd ~                # change to root directory
