@@ -10,6 +10,8 @@ cd ..               # change to parent directory
 
 ls                  # list directory contents
 
+pwd                 # print the path to the current working directory
+
 touch <file>        # create a blank file
 mkdir <file>        # create an empty folder
 
