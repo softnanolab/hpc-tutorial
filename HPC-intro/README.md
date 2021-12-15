@@ -4,15 +4,15 @@ This is a summary, (with small tips and tricks) of a more [detailed presentation
 
 _Last updated by Shanil Panara on 15/12/2021._
 
-## Step 0: Authorisation
+## 🔐 Step 0: Authorisation
 
 You must first be granted access to the HPC before you can use it, your supervisor will need to contact the HPC on your behalf.
 
-## Step 1: Internet
+## 🌐 Step 1: Internet
 
 Before logging in on the HPC, you will need to either be using [**VPN**](https://www.imperial.ac.uk/admin-services/ict/self-service/connect-communicate/remote-access/virtual-private-network-vpn/) (off-campus) or the **Imperial-WPA wifi** (on-campus)
 
-## Step 2: Logging in/out
+## 🪵 Step 2: Logging in/out
 
 To login, you can use a Linux/Mac or Windows terminal (or the [interactive rcs terminal online](https://login.rcs.ic.ac.uk)) and type the command:
 
@@ -43,7 +43,7 @@ You can now log in using ```ssh $HPC```
 
 _(Note: the .bashrc file is always executed on the start-up of your terminal)_
 
-## Step 3: The Environment & Files
+## 📂 Step 3: The Environment & Files
 Once you've logged in, if you've never seen Linux or bash before, it may seem like a very foreign environment to you. But don't be alarmed, it's not that bad...
 
 - here is a quick list of [common bash commands](/HPC-intro/BASH_COMMANDS.md)
@@ -107,7 +107,7 @@ This is actually really simple:
 - from your browser, copy the URL for a file you'd like to download
 - in the terminal type: `wget <pasted_link>`
 
-## Step 4: The Resource Manager
+## 👩🏾‍💼 Step 4: The Resource Manager
 
 The resource manager takes care of:
 
@@ -223,9 +223,9 @@ There are a set of special commands to communicate with the resource manager.
     ```
     When a job is completed, it will disappear from the queue.
 
-## Step 5: modules
+## 🧑🏾‍💻 Step 5: Modules
 
-This possibly should have come before step 4. But alas, it is what it is ;)
+This possibly should have come before step 4. But it is what it is ;)
 
 As was seen in the [script above](#a-example_script.pbs), before you execute your code we need to set up the environment for it. This entails **loading modules** such that you can use a software package.
 
@@ -247,56 +247,56 @@ module purge                # unloads all loaded modules
 
 There may be certain software packages which are not installed on the HPC. In this case, you can either:
 
-- Check if the package is available on Anaconda
+### (a) Check if the package is available on Anaconda
 
+```ruby
+module load anaconda3/personal      # load anaconda
+anaconda-setup                      # set up only required once on your RDS
+
+conda create -n masters python=3.8  # create new environment called masters
+                                    ## with python 3.8 installed
+
+conda env list                      # list environments created on conda
+
+source activate masters             # activate masters environment
+
+conda install scipy                 # install scipy package in the environment
+conda install scipy=1.2.0           # a specific version can also be specified
+
+conda deactivate                    # deactivate environment
+```
+
+### (b) Ask the RCS to install a software for you
+
+Here you will need to submit a request via [ICT ASK](https://imperial.service-now.com/ask) - search for "RCS Software Install Request"
+
+### (c) Download (using [wget](#c-downloading-files-from-the-internet)) to your home directory
+
+- Here, I recommend you create a `programs/` folder to download & store programmes in.
+
+- Upon downloading, you may need to build the software - each software will have specific instructions on how to do this.
+
+- In order to more simply call the executable directly, e.g.
     ```ruby
-    module load anaconda3/personal      # load anaconda
-    anaconda-setup                      # set up only required once on your RDS
-
-    conda create -n masters python=3.8  # create new environment called masters
-                                        ## with python 3.8 installed
-
-    conda env list                      # list environments created on conda
-
-    source activate masters             # activate masters environment
-
-    conda install scipy                 # install scipy package in the environment
-    conda install scipy=1.2.0           # a specific version can also be specified
-
-    conda deactivate                    # deactivate environment
+    oxDNA <input> <output>
     ```
 
-- Ask the RCS to install a software for you
+    you will need to create what is called an `alias` for the executable. This is simply a custom command for a specific path. This `alias` can be added in the `.bashrc` file in your home directory.
 
-    Here you will need to submit a request via [ICT ASK](https://imperial.service-now.com/ask) - search for "RCS Software Install Request"
+    ```
+    cd ~            # go to home directory
+    ls -a           # lists ALL directories, files and hidden files/folders
+    nano .bashrc    # opens the .bashrc file in the nano text editor
+    ```
+    Then in the file you will need to add the specific path to the executable, e.g.
+    ```
+    alias oxDNA="/rds/general/user/sp2017/home/programs/oxDNA/build/bin/oxDNA"
+    ```
+    and once you have saved and exited the file, there is a final step.
 
-- Download (using [wget](#c-downloading-files-from-the-internet)) to your home directory
-
-    - Here, I recommend you create a `programs/` folder to download & store programmes in.
-
-    - Upon downloading, you may need to build the software - each software will have specific instructions on how to do this.
-
-    - In order to more simply call the executable directly, e.g.
-        ```ruby
-        oxDNA <input> <output>
-        ```
-
-        you will need to create what is called an `alias` for the executable. This is simply a custom command for a specific path. This `alias` can be added in the `.bashrc` file in your home directory.
-
-        ```
-        cd ~            # go to home directory
-        ls -a           # lists ALL directories, files and hidden files/folders
-        nano .bashrc    # opens the .bashrc file in the nano text editor
-        ```
-        Then in the file you will need to add the specific path to the executable, e.g.
-        ```
-        alias oxDNA="/rds/general/user/sp2017/home/programs/oxDNA/build/bin/oxDNA"
-        ```
-        and once you have saved and exited the file, there is a final step.
-
-        You will need to either:
-        - Close & re-open your terminal.
-        - Or, manually run the `.bashrc` file  using `source ~/.bashrc`
+    You will need to either:
+    - Close & re-open your terminal.
+    - Or, manually run the `.bashrc` file  using `source ~/.bashrc`
 
 ---
 
