@@ -12,7 +12,7 @@ A set of tutorials using &amp; running simulations on the HPC at Imperial, our g
     - downloading software to use on the HPC
 - [ ] [Running oxDNA simulations](https://github.com/softnanolab/hpc-tutorial/tree/main/oxDNA-simulation)
     - oxDNA software setup on the HPC
-    - oxDNA file anatomy
+    - oxDNA input file
 - [ ] [Analysing oxDNA simulations](https://github.com/softnanolab/hpc-tutorial/tree/main/oxDNA-analysis)
     - `DNAanalysis` (written alongside oxDNA input files)
     - `oxDNA analysis tools` *[(source code)](https://github.com/sulcgroup/oxdna_analysis_tools)*

@@ -256,9 +256,9 @@ anaconda-setup                      # set up only required once on your RDS
 conda create -n masters python=3.8  # create new environment called masters
                                     ## with python 3.8 installed
 
-conda env list                      # list environments created on conda
-
 source activate masters             # activate masters environment
+
+conda env list                      # list environments created on conda
 
 conda install scipy                 # install scipy package in the environment
 conda install scipy=1.2.0           # a specific version can also be specified
