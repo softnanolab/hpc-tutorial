@@ -23,7 +23,7 @@ oxDNA oxdna.sim.in <options>
 ```
 - We do this by adding a line to our `.bashrc` file, e.g. `alias oxDNA=/home/shanil/programs/oxDNA/build/bin/oxDNA`, where you must customise the path to point to your oxDNA executable. Ensure, the terminal is restarted or `source ~/.bashrc` is run before trying to use this command.
 
-## How do I run these functions on the HPC
+## How do I run these commands on the HPC
 
 In order to run these on the HPC, you'll need a PBS input file, describing the resource requirements, appropriately managing files/folders and more (details of this are in the [HPC introduction](/HPC-intro/README.md))
 
