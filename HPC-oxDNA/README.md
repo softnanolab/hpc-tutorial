@@ -21,10 +21,13 @@ or if the alias has been set
 ```
 oxDNA oxdna.sim.in <options>
 ```
-We do this by adding the following line to our `.bashrc` file, where the path is replaced for your system
-```
-alias oxDNA=/home/shanil/programs/oxDNA/build/bin/oxDNA
-```
+- We do this by adding the following line to our `.bashrc` file, where the path is replaced for your system
+    
+    ```
+    alias oxDNA=/home/shanil/programs/oxDNA/build/bin/oxDNA
+    ```
+   
+   Ensure, the terminal is restarted or `source ~/.bashrc` is run before trying to use this command.
 
 ## How do I run these functions on the HPC
 
