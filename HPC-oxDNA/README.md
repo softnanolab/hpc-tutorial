@@ -8,9 +8,9 @@ You'll first need two files: topology (`.top`) and configuration (`.conf`) files
 
 Next, you should _always_ look to run a minimisation simulation first (which requires an input file **[1a]**), before running the full oxDNA simulation (which also requires it's own input file **[1b]**).
 
-1a. [oxDNA minimisation input file](/HPC-oxDNA/oxdna.min.in)
+- See section #1a below or find the input file here [oxDNA minimisation input file](/HPC-oxDNA/oxdna.min.in)
 
-1b. [oxDNA simulation input file](/HPC-oxDNA/oxdna.sim.in)
+- See section #1b below or find the input file here [oxDNA simulation input file](/HPC-oxDNA/oxdna.sim.in)
 
 To run these input files, you can run either:
 
@@ -25,9 +25,9 @@ oxDNA oxdna.sim.in <options>
 
 ## How do I run these commands on the HPC
 
-In order to run these on the HPC, you'll need a PBS input file, describing the resource requirements, appropriately managing files/folders and more (details of this are in the [HPC introduction](/HPC-intro/README.md))
+In order to run these on the HPC, you cannot simply run them on the command line, you have to use a job scheduler (discussed in more detail [here](/HPC-intro/README.md)). On the HPC, we use the PBS system, which you'll need a PBS input file for. This file describes the resource requirements, and otherwise is a normal bash script - which we can use to manage files/folders, and run the oxDNA commands.
 
-2 . [PBS input file](/HPC-oxDNA/pbs_input_file)
+- See: section #2 below.
 
 Below are their explanations.
 
