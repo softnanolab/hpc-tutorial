@@ -276,4 +276,7 @@ cp "${NAME}.top" "${NAME}.min.top"
 #       - log file - all terminal output directed to a file
 #       - trajectory file - output of the configurations at different timesteps
 #       - last configuration file - the configuration at the last timestep
+
+# Enter parent directory
+cd .. 
 ```
