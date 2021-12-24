@@ -2,7 +2,7 @@
 
 _Last updated by Shanil Panara on 24/12/2021._
 
-## How do I simulate a design on the HPC?
+## How do I simulate a design?
 
 You'll first need two files: topology (`.top`) and configuration (`.conf`) files which describe the structure that you would like to simulate.
 
@@ -12,12 +12,23 @@ Next, you should _always_ look to run a minimisation simulation first (which req
 
 1b. [oxDNA simulation input file](/HPC-oxDNA/oxdna.sim.in)
 
-In order to run these on the HPC, you'll need a PBS input file, describing the resource requirements and more (details of this are in the [HPC introduction](/HPC-intro/README.md))
+To run these input files, you can run either:
+
+```
+path/to/oxDNA oxdna.sim.in <options>
+```
+or if the alias has been set
+```
+oxDNA oxdna.sim.in <options>
+```
+
+## How do I run these functions on the HPC
+
+In order to run these on the HPC, you'll need a PBS input file, describing the resource requirements, appropriately managing files/folders and more (details of this are in the [HPC introduction](/HPC-intro/README.md))
 
 2 . [PBS input file](/HPC-oxDNA/pbs_input_file)
 
 Below are their explanations.
-
 
 ## oxDNA input files
 
