@@ -1,0 +1,61 @@
+##############################
+####  PROGRAM PARAMETERS  ####
+##############################
+
+interaction_type = DNA2 # use oxDNA2 interaction potential
+backend = CPU           # minimisation can't be run on a GPU
+
+##############################
+####    SIM PARAMETERS    ####
+##############################
+
+# Minimisation parameters
+sim_type = min          # minimisation simulation
+
+max_backbone_force = 5. # related to the maximum distance allowed
+                        # between two backbone sites, changes the
+                        # potential energy function
+
+# Others
+steps = 3000            # a few thousand steps should be sufficient
+                        # but you might want to check first
+
+T = ...                 # temperature is specified when running the
+                        # simulation - given in the form: `<float> C`
+
+salt_concentration=0.5  # can only be specified if using the DNA2
+                        # interaction potential (units are in M)
+
+
+verlet_skin = 0.15      # maximum displacement (in simulation units)
+                        # before Verlet lists need to be updated
+                        # (all bases within a given cut-off distance)
+
+dt = 0.003              # time step should be between 0.001 and 0.003
+                        # time conversion is not straight forward, but
+                        # with direct time conversion, 1 dt = 3.03 us
+
+##############################
+####    INPUT / OUTPUT    ####
+##############################
+
+                        # These 6 are specified in the PBS file.
+topology = ...          # input:    topology file
+conf_file = ...         # input:    configuration file
+lastconf_file = ...     # output:   last configuration file
+trajectory_file = ...   # output:   system configurations through
+                        #           the simulation
+energy_file = ...       # output:   energy (per nucleotide),
+log_file = ...          # output:   collects all log statements:
+                        #           info, debug, warnings, errors...
+
+                         # number of timesteps after which to output
+                         # a snapshot of the system's:
+print_energy_every=1000  # energies (for energy file)
+print_conf_interval=1000 # configuration (for trajectory file)
+time_scale = linear      # linearly spaced configurations outputed
+
+no_stdout_energy = 0    # (0 = false) print energy to output stream
+restart_step_counter=1  # step counter begins at 0
+refresh_vel = 1         # initialises random velocities for each nt
+                        # from a Maxwell-Boltzmann prob. distribution
