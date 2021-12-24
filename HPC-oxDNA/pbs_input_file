@@ -1,0 +1,68 @@
+#PBS -N exampleScript
+#PBS -l walltime=24:00:00
+#PBS -l select=1:ncpus=1:mem=96gb:ngpus=1:gpu_type=P1000
+#PBS -J 50-100:5
+
+# 1. Set the name of the job
+# 2. Set the max time you expect the job to run (24h)
+# 3. Select 1 GPU of type 'P1000'
+# 4. Run 3 copies of this job (-J 30-50:10)
+
+
+# Environment setup
+module load cuda/9.2
+
+# File naming
+T=${PBS_ARRAY_INDEX}
+FOLDER="01_${T}C"
+NAME="01_tetrahedron_5nt"
+MIN_NAME="${NAME}.min"
+SIM_NAME="${NAME}.sim"
+
+# File management
+mkdir $FOLDER
+cp "${NAME}.top" "${FOLDER}/"
+cp "${NAME}.conf" "${FOLDER}/"
+
+cp oxdna.min.in "${FOLDER}/"
+cp oxdna.sim.in "${FOLDER}/"
+cp oxDNA2_seq_dep_params.txt "${FOLDER}/"
+cp input.pbs "${FOLDER}/"
+
+# Directory Setup
+cd $PBS_O_WORKDIR
+cd $FOLDER
+
+# Print the details of the GPU you are using
+nvidia-smi
+
+# Minimise
+/rds/general/user/sp2017/home/programs/oxDNA/build/bin/oxDNA oxdna.min.in \
+    topology=${NAME}.top conf_file=${NAME}.conf \
+    lastconf_file=${MIN_NAME}.conf \
+    trajectory_file=${MIN_NAME}.traj.conf \
+    energy_file=${MIN_NAME}.energy \
+    log_file=${MIN_NAME}.log \
+    T=${T}C
+# Here, we have specified
+# - the input: topology and configuration file names for the oxDNA **minimisation**
+# - the output: "minimised" configuration file (taken as the last configuration)
+
+# Copy toplogy
+cp "${NAME}.top" "${NAME}.min.top"
+
+# Run
+/rds/general/user/sp2017/home/programs/oxDNA/build/bin/oxDNA oxdna.sim.in \
+    topology=${MIN_NAME}.top conf_file=${MIN_NAME}.conf \
+    lastconf_file=${SIM_NAME}.conf \
+    trajectory_file=${SIM_NAME}.traj.conf \
+    energy_file=${SIM_NAME}.energy \
+    log_file=${SIM_NAME}.log \
+    T=${T}C
+# Here, we have specified:
+# - the input: topology and configuration files for the oxDNA **simulation**
+# - the output:
+#       - energy file - output (Total | Kinetic | Potential) at different timesteps
+#       - log file - all terminal output directed to a file
+#       - trajectory file - output of the configurations at different timesteps
+#       - last configuration file - the configuration at the last timestep

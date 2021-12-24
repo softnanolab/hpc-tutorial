@@ -135,13 +135,8 @@ We communicate with the resource manager using a **shell script** (aka job scrip
 #PBS -l select=1:ncpus=1:mem=96gb:ngpus=1:gpu_type=P1000
 #PBS -J 50-100:5
 
-# 1. Set the name of the job
-# 2. Set the max time you expect the job to run (24h)
-# 3. Select 1 GPU of type 'P1000'
-# 4. Run 11 copies of this job (-J 50-100:5)
-
 # load cuda module into environment
-## and any other modules you require
+# and any other modules you require
 module load cuda/9.2
 
 # Change into the directory where script is submitted from
@@ -164,7 +159,17 @@ echo "this is the array index ${PBS_ARRAY_INDEX}" > $FILENAME
 
     - Many different **flags** (e.g. `-N`, `-l`, `-J`,...) can be used to specify different options for the jobs you run.
     - The ones above are sufficient for a GPU job.
-    - Further documentation can be found online.
+    - **\# Setup explanation:**
+
+        1. Set the name of the job
+
+        2. Set the max time you expect the job to run (24h)
+
+        3. Select 1 GPU of type 'P1000'
+
+        4. Run 11 copies of this job (-J 50-100:5)
+
+    - Further documentation can be found online
 
 - `#PBS -l select:...` - using a GPU (and choosing job resources)
 
@@ -195,7 +200,7 @@ There are a set of special commands to communicate with the resource manager.
     ```
     qsub example_script.pbs <optional: additional flags here>
     ```
-    Additional flags should be written exactly as they are in the PBS script file.
+    Additional flags should be written exactly as they are in the PBS script file, without the #PBS at the start.
 
     Once you submit a job to the queue, it may take a while to start running as the resource manager will only start running the job when the right resources become available.
 
@@ -229,7 +234,9 @@ This possibly should have come before step 4. But it is what it is ;)
 
 As was seen in the [script above](#a-example_script.pbs), before you execute your code we need to set up the environment for it. This entails **loading modules** such that you can use a software package.
 
-### Already installed on HPC
+---
+
+### Loading modules already available on the HPC
 
 These are the commands you might need:
 
@@ -242,8 +249,9 @@ module load matlab/R2018a   # load a specific version
 module list                 # lists all loaded modules
 module purge                # unloads all loaded modules
 ```
+---
 
-### Not installed on HPC
+### Loading/downloading modules which are not installed on HPC
 
 There may be certain software packages which are not installed on the HPC. In this case, you can either:
 
