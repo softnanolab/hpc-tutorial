@@ -2,21 +2,34 @@
 
 _Last updated by Shanil Panara on 24/12/2021._
 
-## How do I simulate a design on the HPC?
+## How do I simulate a design?
 
 You'll first need two files: topology (`.top`) and configuration (`.conf`) files which describe the structure that you would like to simulate.
 
-Then you should _always_ look to run a minimisation simulation first (which requires an input file **[1]**), before running the full oxDNA simulation (which also requires it's own input file **[2]**).
+Next, you should _always_ look to run a minimisation simulation first (which requires an input file **[1a]**), before running the full oxDNA simulation (which also requires it's own input file **[1b]**).
 
-1a. [oxDNA minimisation input file](/HPC-oxDNA/oxdna.min.in)
-1b. [oxDNA simulation input file](/HPC-oxDNA/oxdna.sim.in)
+- See section #1a below or find the input file here [oxDNA minimisation input file](/HPC-oxDNA/oxdna.min.in)
 
-In order to run these on the HPC, you'll need a PBS input file, describing the resource requirements and more (details of this are in the [HPC introduction](/HPC-intro/README.md))
+- See section #1b below or find the input file here [oxDNA simulation input file](/HPC-oxDNA/oxdna.sim.in)
 
-2. [PBS input file](/HPC-oxDNA/pbs_input_file)
+To run these input files, you can run either:
+
+```
+path/to/oxDNA oxdna.sim.in <options>
+```
+or if the alias has been set
+```
+oxDNA oxdna.sim.in <options>
+```
+- We do this by adding a line to our `.bashrc` file, e.g. `alias oxDNA=/home/shanil/programs/oxDNA/build/bin/oxDNA`, where you must customise the path to point to your oxDNA executable. Ensure, the terminal is restarted or `source ~/.bashrc` is run before trying to use this command.
+
+## How do I run these commands on the HPC
+
+In order to run these on the HPC, you cannot simply run them on the command line, you have to use a job scheduler (discussed in more detail [here](/HPC-intro/README.md)). On the HPC, we use the PBS system, which you'll need a PBS input file for. This file describes the resource requirements, and otherwise is a normal bash script - which we can use to manage files/folders, and run the oxDNA commands.
+
+- See: section #2 below.
 
 Below are their explanations.
-
 
 ## oxDNA input files
 
@@ -212,10 +225,11 @@ refresh_vel = 1         # initialises random velocities for each nt
     ```ruby
     #PBS -l select=1:ncpus=1:mem=96gb:ngpus=1:gpu_type=P1000
     ```
-4. Run 3 copies of this job (-J 30-50:10)
+4. Run 6 copies of this job (-J 30-55:5)
     ```ruby
-    #PBS -J 50-100:5
+    #PBS -J 30-55:5
     ```
+    where below the `${PBS_ARRAY_INDEX}` variable will change for each subjob, i.e. it's value will be either: 30 35 40 45 50 or 55, where we use this to dictate the temperature we want to run the simulation at
 
 ### The rest of the file
 ```python
@@ -276,4 +290,7 @@ cp "${NAME}.top" "${NAME}.min.top"
 #       - log file - all terminal output directed to a file
 #       - trajectory file - output of the configurations at different timesteps
 #       - last configuration file - the configuration at the last timestep
+
+# Enter parent directory
+cd .. 
 ```
