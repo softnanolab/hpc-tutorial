@@ -4,30 +4,20 @@ _Last updated by Shanil Panara on 24/12/2021._
 
 ## How do I simulate a design?
 
-You'll first need two files: topology (`.top`) and configuration (`.conf`) files which describe the structure that you would like to simulate.
+1. You'll first need two files: topology (`.top`) and configuration (`.conf`) files which describe the structure that you would like to simulate.
 
-Next, you should _always_ look to run a minimisation simulation first (which requires an input file **[1a]**), before running the full oxDNA simulation (which also requires it's own input file **[1b]**).
+2. You should _always_ look to run a minimisation simulation first (which requires an input file **[1a](#1a-oxdna-minimisation-file)**)
+3. Next you run a normal oxDNA simulation (which also requires it's own input file **[1b]()**).
 
-- **See section #1a below** or find the input file here [oxDNA minimisation input file](/HPC-oxDNA/oxdna.min.in)
+- **See section #1a below** or find the input file here [oxDNA minimisation input file](/oxDNA-simulation/oxdna.min.in)
 
-- **See section #1b below** or find the input file here [oxDNA simulation input file](/HPC-oxDNA/oxdna.sim.in)
-
-To run these input files, you can run either:
-
-```
-path/to/oxDNA oxdna.sim.in <options>
-```
-or if the alias has been set
-```
-oxDNA oxdna.sim.in <options>
-```
-- We do this by adding a line to our `.bashrc` file, e.g. `alias oxDNA=/home/shanil/programs/oxDNA/build/bin/oxDNA`, where you must customise the path to point to your oxDNA executable. Ensure, the terminal is restarted or `source ~/.bashrc` is run before trying to use this command.
+- **See section #1b below** or find the input file here [oxDNA simulation input file](/oxDNA-simulation/oxdna.sim.in)
 
 ## How do I run these commands on the HPC
 
 In order to run these on the HPC, you cannot simply run them on the command line, you have to use a job scheduler (discussed in more detail [here](/HPC-intro/README.md)). On the HPC, we use the PBS system, which you'll need a PBS input file for. This file describes the resource requirements, and otherwise is a normal bash script - which we can use to manage files/folders, and run the oxDNA commands.
 
-- **See: section #2 below** or find the input file here [PBS input file](/HPC-oxDNA/pbs_input_file) 
+- **See: section #2 below** or find the input file here [PBS input file](/oxDNA-simulation/pbs_input_file) 
 
 Below are their explanations.
 
@@ -37,15 +27,26 @@ The input files for minimisation and simulation are relatively similar, and cont
 
 - You can find a description of all input file parameters
     - here: [online documentation](https://dna.physics.ox.ac.uk/index.php/Documentation#input_files) - though it is rather brief of the details
-    - and here: [documentation from src](/HPC-oxDNA/input_options.md) - a much more in-depth source of information, copied from the oxDNA source code and put here for accessibility
+    - and here: [documentation from src](/oxDNA-simulation/input_options.md) - a much more in-depth source of information, copied from the oxDNA source code and put here for accessibility
 - Below, I have tried to give a slightly expanded explanation for the input parameters where I felt it was necessary.
+
+For the sake of completeness, if you wanted to run these input files individually, you can use either of these two commands:
+
+```bash
+path/to/oxDNA oxdna.sim.in <options>
+
+# or if the alias has been set
+oxDNA oxdna.sim.in <options>
+```
+- The latter can be achieed by adding a line to our `.bashrc` file
+- e.g. `alias oxDNA=/home/shanil/programs/oxDNA/build/bin/oxDNA`, where I am simply creating a path which point to my oxDNA executable. 
+- Ensure, the terminal is restarted or `source ~/.bashrc` is run before trying to use this custom command.
 
 ## 1a. oxDNA minimisation file
 
-The oxDNA energy minimisation process is not very well documented. However:
-- this is a steepest descent energy minimisation, which moves the atoms to reduce the overall energy of the configuration
-- for this, the oxDNA potential function is modified
-
+The oxDNA energy minimisation process is not very well documented. The key points are:
+- This is a steepest descent energy minimisation, which moves the atoms to reduce the overall energy of the configuration
+- For this, the oxDNA potential function is modified
 - We carry out this process in order to ensure that we don't have "extremely high energy" points in the starting configuration
 - If we didn't, the existence of these points could make our simulations effectively "explode", hence fail...!
 
@@ -118,14 +119,18 @@ refresh_vel = 1         # initialises random velocities for each nt
 
 ## 1b. oxDNA relaxation file
 
-- This is for slowly bring together neighbours that start far away (more than a couple of length units) from each other.
-- Exotic cadnano files will inevitably have this problem.
+- "Relaxation" is different to minimisation, and is a step that is performed before a simulation.
+    - It is meant for structures which are not generated close to their target equilibrium conformation
+    - It will slowly bring together neighbours that start far away (more than a couple of length units) from each other.
+    - Exotic cadnano files are said to inevitably have this problem.
 - The nice thing about this interaction is that it also works on CUDA, and works in the same way for both oxDNA and oxDNA2.
-- Set `sim_type = relax`, with the same input parameters as the minimisation file
+- It can be used very simply, by:
+    - setting `sim_type = relax` in the input file
+    - all other parameters same input as the minimisation file (for GPU, see CUDA section in the simulation input file below)
 
 ## 1c. oxDNA simulation file
 
-The below example shows all the options you should need to use for GPU enabled simulations, with explanations as to what they are doing. It is highly recommended to use GPUs for the simulation as they provide a substantial performance increase.
+The below example shows all the options you should need to use for GPU enabled simulations, with explanations as to what they are doing. It is highly recommended to use GPUs for the simulation as they provide a substantial performance increase. As you will see, many of the input parameters remain the same.
 
 ```python
 ##############################
@@ -210,7 +215,9 @@ refresh_vel = 1         # initialises random velocities for each nt
 
 ```
 
-## 2. [PBS input file](/HPC-oxDNA/pbs_input_file) example for an oxDNA simulation at different temperatures
+## 2. [PBS input file](/oxDNA-simulation/pbs_input_file) example for an oxDNA simulation at different temperatures
+
+Here, is an explanation of a specific PBS input file.
 
 ### PBS instructions
 1. Set the name of the job
@@ -260,7 +267,7 @@ cd $FOLDER
 # Print the details of the GPU you are using
 nvidia-smi
 
-# Minimise
+# Minimise - ENSURE YOU CHANGE THIS PATH TO YOUR OXDNA EXECUTABLE
 /rds/general/user/sp2017/home/programs/oxDNA/build/bin/oxDNA oxdna.min.in \
     topology=${NAME}.top conf_file=${NAME}.conf \
     lastconf_file=${MIN_NAME}.conf \
@@ -271,11 +278,15 @@ nvidia-smi
 # Here, we have specified
 # - the input: topology and configuration file names for the oxDNA **minimisation**
 # - the output: "minimised" configuration file (taken as the last configuration)
+#               trajectory file
+#               energy file
+#               log file (all terminal output directed here)
+#               temperature of the simulation
 
 # Copy toplogy
 cp "${NAME}.top" "${NAME}.min.top"
 
-# Run
+# Run simulaton - ENSURE YOU CHANGE THIS PATH TO YOUR OXDNA EXECUTABLE
 /rds/general/user/sp2017/home/programs/oxDNA/build/bin/oxDNA oxdna.sim.in \
     topology=${MIN_NAME}.top conf_file=${MIN_NAME}.conf \
     lastconf_file=${SIM_NAME}.conf \
@@ -283,13 +294,7 @@ cp "${NAME}.top" "${NAME}.min.top"
     energy_file=${SIM_NAME}.energy \
     log_file=${SIM_NAME}.log \
     T=${T}C
-# Here, we have specified:
-# - the input: topology and configuration files for the oxDNA **simulation**
-# - the output:
-#       - energy file - output (Total | Kinetic | Potential) at different timesteps
-#       - log file - all terminal output directed to a file
-#       - trajectory file - output of the configurations at different timesteps
-#       - last configuration file - the configuration at the last timestep
+ # We have specified inputs & outputs which are VERY similar to the minimisation above
 
 # Enter parent directory
 cd .. 
