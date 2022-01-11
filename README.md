@@ -10,8 +10,8 @@ A set of tutorials using &amp; running simulations on the HPC at Imperial, our g
     - file structure & transferring files
     - the resource manager & running jobs on the HPC (PBS scripting)
     - downloading software to use on the HPC
+- [ ] [Setting up oxDNA](https://github.com/softnanolab/hpc-tutorial/tree/main/oxDNA-setup)
 - [ ] [Running oxDNA simulations](https://github.com/softnanolab/hpc-tutorial/tree/main/oxDNA-simulations)
-    - oxDNA software setup on the HPC
     - oxDNA input file
     - PBS input file
 - [ ] [Analysing oxDNA simulations](https://github.com/softnanolab/hpc-tutorial/tree/main/oxDNA-analysis)
