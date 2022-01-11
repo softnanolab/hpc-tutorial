@@ -194,7 +194,7 @@ echo "this is the array index ${PBS_ARRAY_INDEX}" > $FILENAME
 
 ### (b) running/monitoring/deleting jobs
 
-There are a set of special commands to communicate with the resource manager.
+There are a set of special commands to communicate with the resource manager. Type these directly into the HPC terminal.
 
 - `qsub` - Submitting a *batch* job to the queue, we use the **q**ueue **sub**mit command.
     ```
