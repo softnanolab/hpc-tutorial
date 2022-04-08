@@ -1,6 +1,6 @@
 # Setting up lammps
 
-Last updated by Shanil Panara on 08/04/2021.
+_Last updated by Shanil Panara on 08/04/2021._
 
 So this took me faar too long to figure out, mainly because this method is so flexible and there are a lot of extra modifications you can make, and a lot more to it than what I'm presenting below... but this should do the job for running simulations with LAMMPS, and using oxDNA and many other packages. 
 
