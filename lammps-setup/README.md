@@ -13,7 +13,7 @@ I believe that there are two general options you can do w.r.t installing LAMMPS:
 
 ## 1. Downloading
 
-First, log in to the HPC. See [HPC-introduction](https://github.com/softnanolab/hpc-tutorial/tree/main/HPC-intro) where I've written how to do this.
+First, log in to the HPC. See [HPC-introduction](https://github.com/softnanolab/hpc-tutorial/tree/main/HPC-intro) where I've written how to do this, and more.
 
 Then, you can download the source code into your `programs` directory. (it's good practice to store all your programs in one place like this).
 
