@@ -1,5 +1,7 @@
 # Setting up lammps
 
+Last updated by Shanil Panara on 08/04/2021.
+
 So this took me faar too long to figure out, mainly because this method is so flexible and there are a lot of extra modifications you can make, and a lot more to it than what I'm presenting below... but this should do the job for running simulations with LAMMPS, and using oxDNA and many other packages. 
 
 _I'm going to write this guide whilst my "build" step is occuring on the HPC (this takes a while ~20mins) - challenge accepted. EDIT: I failed, but hopefully I've saved the next person some time xD!_
