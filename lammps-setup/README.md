@@ -1,6 +1,8 @@
 # Setting up lammps
 
-So this took me faar to long to figure out, and there is a lot of extra modifications you can make, but this should do the job for running simulations with LAMMPS, and using oxDNA and many other packages. (see `most.cmake` for which packages get installed). I'm going to write this guide whilst my "build" step is occuring on the HPC (this takes a while ~20mins) - challenge accepted.
+So this took me faar too long to figure out, mainly because this method is so flexible and there are a lot of extra modifications you can make, and a lot more to it than what I'm presenting below... but this should do the job for running simulations with LAMMPS, and using oxDNA and many other packages. 
+
+_I'm going to write this guide whilst my "build" step is occuring on the HPC (this takes a while ~20mins) - challenge accepted. EDIT: I failed, but hopefully I've saved the next person some time xD!_
 
 I believe that there are two general options you can do w.r.t installing LAMMPS:
 
