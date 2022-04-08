@@ -4,7 +4,7 @@ You should be able to follow the instructions on the [oxDNA GitHub](https://gith
 
 ---
 
-Below, I (/we) will put any small tips and tricks for issues when and as they occur...
+Below, we will put any small tips, tricks, and reminders related to the setup of oxDNA.
 
 ### Compiling w CUDA
 
