@@ -4,12 +4,12 @@ So this took me faar to long to figure out, and there is a lot of extra modifica
 
 I believe that there are two general options you can do w.r.t installing LAMMPS:
 
-1. Download a pre-built executable for your system: (see here)[https://docs.lammps.org/Install.html].
-2. Download the LAMMPS source code from github and compile it yourself, which is what I will describe below. For completeness, (see here)[https://docs.lammps.org/Install_git.html].
+1. Download a pre-built executable for your system: [see here](https://docs.lammps.org/Install.html).
+2. Download the LAMMPS source code from github and compile it yourself, which is what I will describe below. For completeness, [see here](https://docs.lammps.org/Install_git.html).
 
 ## 1. Downloading
 
-First, log in to the HPC. See (HPC-introduction)[https://github.com/softnanolab/hpc-tutorial/tree/main/HPC-intro] where I've written how to do this.
+First, log in to the HPC. See [HPC-introduction](https://github.com/softnanolab/hpc-tutorial/tree/main/HPC-intro) where I've written how to do this.
 
 Then, you can download the source code into your `programs` directory. (it's good practice to store all your programs in one place like this).
 
@@ -24,7 +24,7 @@ Here, we are downloading all the source code of the "release" branch of the repo
 
 _Okay, so this is the thing which took me forever to understand. So here goes..._
 
-We are going to use a tool called `CMake` to build the LAMMPS software. You can read about this in more detail (here)[https://docs.lammps.org/Build_cmake.html]. In summary, it is a very powerful tool which makes life very easy for people with limited experience in compiling software.
+We are going to use a tool called `CMake` to build the LAMMPS software. You can read about this in more detail [here](https://docs.lammps.org/Build_cmake.html). In summary, it is a very powerful tool which makes life very easy for people with limited experience in compiling software.
 
 To use it, you first have to load it. It came pre-loaded on the HPC for me, but if it is not:
 
