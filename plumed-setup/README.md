@@ -83,4 +83,6 @@ Finally, I built LAMMPS! I only chose a specific few packages, see my `cmake` fi
 mkdir build; cd build
 cmake ../cmake -C ../cmake/presets/shanil.cmake -D DOWNLOAD_PLUMED=no -D PLUMED_MODE=shared
 cmake --build .		# took ~20-30m
+make install      # this installs it to a folder in your home directory, i.e. ~/.local/bin/lmp
+                  # this allows you to call it like "lmp" in the command line
 ```
