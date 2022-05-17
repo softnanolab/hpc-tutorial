@@ -80,7 +80,10 @@ This creates two folders and a Makefile almost instantly, ez.
 Finally, I built LAMMPS! I only chose a specific few packages, see my `cmake` file in the folder.
 
 ```bash
-mkdir build; cd build
+cd ../../
+mkdir build
+cd build
+
 cmake ../cmake -C ../cmake/presets/shanil.cmake -D DOWNLOAD_PLUMED=no -D PLUMED_MODE=shared
 cmake --build .		# took ~20-30m
 make install      # this installs it to a folder in your home directory, i.e. ~/.local/bin/lmp
