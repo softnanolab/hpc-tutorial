@@ -68,19 +68,34 @@ export PLUMED_KERNEL=/usr/local/lib/libplumedKernel.so
 Here, I made sure to activate my conda environment (allowing me to use python).
 
 ```bash
-cd path/to/lammps
+# Enter into LAMMPS folder, then:
 cd lib/plumed/
 python Install.py -p /usr/local -m shared
+cd ../../
 ```
 
 This creates two folders and a Makefile almost instantly, ez.
 
 ## 5. Use CMake to compile and install LAMMPS
 
-Finally, I built LAMMPS! I only chose a specific few packages, see my `cmake` file in the folder.
+Finally, I built LAMMPS! 
+
+I only chose a specific few packages, and so I've made a preset file, see `shanil.cmake`.
 
 ```bash
+# OPTIONAL STEP
+cd cmake/presets/
+
+# Create, copy, and paste contents of `shanil.cmake` file
+touch shanil.cmake
+nano shanil.cmake 
+   # right click then to paste
+   # Ctrl+X to exit nano
+
 cd ../../
+```
+
+```bash
 mkdir build
 cd build
 
