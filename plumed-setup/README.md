@@ -28,6 +28,8 @@ tar xfz plumed-<version>.tgz
 
 ## 2. Compile and Install PLUMED
 
+        skip this step if you're on the HPC
+
 This took me faaaaaaar too long, as there seemed to be many options, but the following should work fine:
 
 ```bash
