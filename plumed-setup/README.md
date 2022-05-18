@@ -12,7 +12,7 @@ There are many different sources I had to go to, and I spent a day trying to fig
 
 1. Download PLUMED
 2. Compile & Install PLUMED
-3. Add stuff to .bashrc
+3. Create all the necessary links
 4. Create a _shared_ link from LAMMPS to PLUMED
 5. Use CMake to compile and install LAMMPS
 
@@ -54,7 +54,7 @@ _Then you wait like 10 minutes_ Using the above flag `--prefix` means that:
 - plumed installation files should be in `/usr/local/lib` 
 - and some other files will be in other files in `/usr/local/`. 
 
-## 3. Add stuff to your `.bashrc` file
+## 3. Create all the necessary links
 
 In order for LAMMPS to be able to locate all the PLUMED files, either you can:
 
