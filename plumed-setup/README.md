@@ -63,16 +63,16 @@ In order for LAMMPS to be able to locate all the PLUMED files, either you can:
     - **My Computer**: I don't know how to do this on my own computer. It should be installed with your other files, likely at `/usr/local/lib/plumed/modulefile`. You might need to change the contents of the file
     - **On The HPC**:
     
-    ```bash
-    # Look for the plumed versions available
-    module avail plumed
-    # Load version 2.6.x (if it is available)
-    module load plumed/2.6.0
-    # Find where it is installed (for use in step 4 -> HPC was /apps/plumed/2.6.0/)
-    module show plumed
-    ```
+        ```bash
+        # Look for the plumed versions available
+        module avail plumed
+        # Load version 2.6.x (if it is available)
+        module load plumed/2.6.0
+        # Find where it is installed (for use in step 4 -> HPC was /apps/plumed/2.6.0/)
+        module show plumed
+        ```
 
-- **HACK THE SYSTEM** and just add the relevant information in your `.bashrc` file, which achieves exactly the same as the modulefile, but it will do it every time your terminal is restarted.
+- OR, you just add the relevant information in your `.bashrc` file, which achieves exactly the same as the modulefile, but it will do it every time your terminal is restarted.
 
     I added the following to my bashrc file:
 
