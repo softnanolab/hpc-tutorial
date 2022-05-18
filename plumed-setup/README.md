@@ -34,7 +34,7 @@ tar xfz plumed-<version>.tgz
 
 ## 2. Compile and Install PLUMED
 
-> Skip this step if you're on the HPC
+> Skip this step if you're on the HPC and step 3 works, otherwise come back and do it (FYI I installed it in ~/programs/local/ on my HPC)
 
 This took me faaaaaaar too long, as there seemed to be many options, but the following should work fine:
 
@@ -60,8 +60,8 @@ In order for LAMMPS to be able to locate all the PLUMED files, either you can:
 
 - load the modulefile
     
-    - **My Computer**: I don't know how to do this on my own computer. It should be installed with your other files, likely at `/usr/local/lib/plumed/modulefile`. You might need to change the contents of the file
-    - **On The HPC**:
+    - **My Computer**: I don't know how to setup the _module_ package on my own computer... but if you do, it should be installed with your other files at the given prefix e.g. `usr/local/`, with the full path of `/usr/local/lib/plumed/modulefile`.
+    - **HPC** using pre-installed version
     
         ```bash
         # Look for the plumed versions available
@@ -70,6 +70,11 @@ In order for LAMMPS to be able to locate all the PLUMED files, either you can:
         module load plumed/2.6.0
         # Find where it is installed (for use in step 4 -> HPC was /apps/plumed/2.6.0/)
         module show plumed
+        ```
+    - **HPC** using a version you installed
+    
+        ```bash
+        module load /rds/general/user/sp2017/home/programs/local/lib/plumed/modulefile
         ```
 
 - OR, you just add the relevant information in your `.bashrc` file, which achieves exactly the same as the modulefile, but it will do it every time your terminal is restarted.
